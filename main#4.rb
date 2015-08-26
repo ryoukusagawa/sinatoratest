@@ -7,12 +7,12 @@ get '/hello/:name' do
 end
 
 
-get '/hello/:name' do |n|
+get '/hello/:name' do |n|#リクエストに入ってきたパラメーターを反映させる
     "hello #{n}"
 end
 =end
 
-get '/hello/:fname/?:lname?' do |f,l|
+get '/hello/:fname/?:lname?' do |f,l|#?を後ろに書くと、その部分が無くてもOKになる
     "hello #{f} #{l}"
 end
 
