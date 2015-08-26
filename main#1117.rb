@@ -8,6 +8,11 @@ ActiveRecord::Base.establish_connection(
     "database" => "./bbs.db"
 )
 
+helpers do
+    include Rack::Utils
+    alias_method :h, :escape_html
+end
+
 class Comment < ActiveRecord::Base
 end
 
@@ -18,10 +23,13 @@ end
 
 
 post '/new' do
-    Comment.create({:body => parame[:body]})
+    Comment.create({:body => params[:body]})
    redirect '/' 
 end
 
+post '/delete' do
+    Comment.find(params[:id]).destroy
+end
 
 
 
