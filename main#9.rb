@@ -2,11 +2,16 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
+before '/admin/*'do
+@msg = "admin area!"
+end
+
 before do
 @author = "kusagawa"
 end
 
 after do
+    logger.info "page displayed successfully"
 end
 
 
@@ -18,7 +23,7 @@ end
 
 get '/about' do 
     @title = "about this page"
-    @content = "this page is ... by" + @author
+    @content = "this page is ... by " + @author
     @email = "kywg@gmail.com"
     erb :about
 end
