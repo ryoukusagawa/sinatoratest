@@ -3,7 +3,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'active_record'
 
-ActiveRecord::Base.establish_connecton(
+ActiveRecord::Base.establish_connection(
     "adapter" => "sqlite3",
     "database" => "./bbs.db"
 )
@@ -15,3 +15,13 @@ get '/' do
     @comments = Comment.order("id desc").all
     erb :index
 end
+
+
+post '/new' do
+    Comment.create({:body => parame[:body]})
+   redirect '/' 
+end
+
+
+
+
