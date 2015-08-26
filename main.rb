@@ -5,6 +5,6 @@ get '/' do#/がリクエストされたら
     "hello world"#hello worldを表示する
 end
 
-get '/about' do
-    "about this site page"
+get '/about2' do
+    "about this site page 2"
 end
