@@ -1,28 +1,33 @@
-<!DOCTYPE html>
+ｘ<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>BBS</title>
+    <title>掲示板</title>
 </head>
 <body>
-    <h1>BBS</h1>
+    <h1>掲示板</h1>
     <u1>
         <% @comments.each do |comment| %>
         <li data-id=<%= comment.id %>"">
             <%= h comment.body %>
-            <span class="deleteCmd" style="cursor:pointer;color:blue">[削除]</span>
+            <span class="editCmd" style="cursor:pointer;color:blue">[編集]</span>
+            <span class="deleteCmd" style="cursor:pointer;color:red">[削除]</span>
             </li>
         <% end %>
     </u1>
-    <h2>Add New</h2>
+    <h2>コメント</h2>
     <form method="post" action="/new">
-        <input type="text" name="body"> <input type="submit" value="post!">
+        <label for="exampleInputEmail1">ユーザ名</label>
+        <input type="text" name="user"><br>
+         
+        <label for="exampleInputEmail1">メッセージ</label>
+        <input type="text" name="body"> <input type="submit" value="投稿！">
     </form>    
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>
-         $('.deleteCmd').click(function(){
+         $('.deleteCmd').click(function(){#deleteCmdがclickされたときにfunctionを実行する
             var el = $(this).parent();
-            if(confirm('are you sure to delete?')){
+            if(confirm('本当にこのコメントを削除しますか?')){
                 $.post('/delete',{
                     id:el.data('id')
                 },function(){
