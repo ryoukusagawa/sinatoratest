@@ -23,6 +23,7 @@ end
 
 
 post '/new' do
+    Comment.create({:user => params[:user]})
     Comment.create({:body => params[:body]})
    redirect '/' 
 end
